@@ -29,6 +29,7 @@ class Test extends Common{
 
 
     public function addrule($data){
+                  
                    $authRule = array();
                    $authRule['addtime'] = time();
                    $authRule['title'] = $data['module'];
@@ -39,9 +40,9 @@ class Test extends Common{
                    $authRule["icon"] = '';
                     // var_dump(authRule::where("href",$data['module'])->value("id"));
                    $authRule_id = authRule::where("href",$data['module'])->value("id");
-                    if(!empty($authRule_id)){
+                  if(!empty($authRule_id)){
                       return ['code'=>1,'msg'=>'权限添加成功!'];
-                    }
+                  }
                    // 添加父类
 
                    $res = authRule::create($authRule);
@@ -61,7 +62,6 @@ class Test extends Common{
                    authRule::create($authRule);
                    $authRule['title'] = $data['module'].'编辑';
                    $authRule["href"] = $data['module'].'/edit';
-                   $authRule["menustatus"] = 0;
                    authRule::create($authRule);
                    // 编辑end-----------
                    cache('authRule', NULL);
@@ -87,6 +87,7 @@ class Test extends Common{
                     // $data['Database'] = 'demo';
 
                 $data = input('post.');
+
                 
 
 
@@ -108,7 +109,7 @@ class Test extends Common{
                         7 => ['text',0,'文本'],
                         8 => ['VARCHAR',50,''],  //多选
                       ];
-                      // print_r($data["Database_zh"]);
+                      print_r($data["Database_zh"]);
 
                       $sql_field .= " `" . $data["Database_en"][$key] . "`" .$ziduan_array[$value][0]. " (".$ziduan_array[$value][1].") NOT NULL DEFAULT ".$ziduan_array[$value][2]." COMMENT'". $data["Database_zh"][$key] ."', "; 
                   }
@@ -473,8 +474,8 @@ class Test extends Common{
 
             return ['status'=>1,'msg'=>'设置成功!'];
 
-            // print_r(input('post.'));
-            // die;
+            print_r(input('post.'));
+            die;
 
 
          }
